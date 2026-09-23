@@ -1,0 +1,28 @@
+LAB 6 LOGBOOK - Harvender - E26B07F0822
+SETUP: my working directory is lab06-os-and-filesystem
+T1 prediction: I think ls / will show about 8 items
+T1: /bin holds preset commands
+T1: /dev holds pretent to be file
+T1: / means root directory , ~ means home directory  , . means current directory
+T1: the OS groups files by directory
+T2 prediction: appending after u-w will fail with a Permission denied error because the file owner loses write permissions
+T2: -rw-r--r-- written in numbers is 644
+T2: ./deploy failed at first because ???
+T2: the new policy needed chmod +x
+-rwxrwxrwx  1 rocky  staff  36 23 Sep 00:24 deploy
+T3 prediction: ./nst-info will ??? because ???
+T3 prediction: ./nst-info will fail with a Permission denied error because the file does not have execute permissions (+x)
+T3 prediction: adding .py to the name will not change the behavior because the shebang line still points to the Python interpreter
+T3: python3 nst-info worked but ./nst-info failed because it lacked execute permissions
+T3: renaming the file to .py changed nothing because the shebang line determines the execution behavior
+T3: file extensions are actually used by code editors for syntax highlighting
+T4 prediction: a file called ls in ~/nst/bin will override the system's ls command only if ~/nst/bin is prepended to the PATH variable
+T4: nst-info failed from /tmp because its directory was not in the system PATH
+T4: the full path worked because it explicitly points to the file location, bypassing PATH search
+T4: PATH is searched from left to right and stops at the first matching executable found
+T4: my fake ls took over because its directory was prepended to the front of the PATH variable
+T4: the PATH change vanished in a new terminal because variable modifications are local to the session unless added to shell runtime files like .bashrc
+EXIT 1: a file has -rw-r--r--. running ./file does fail with Permission denied and the one command that fixes it is chmod +x file
+EXIT 2: python3 script works but ./script says permission denied. explained to a friend: python3 reads the script as data, but ./ runs it as an executable which requires the execution flag set on the file itself
+EXIT 3: PATH worked yesterday, gone this morning, nobody touched the file. what happened: the PATH modification was only run in the terminal session directly, meaning it evaporated when the shell closed because it wasn't appended to .bashrc or .zshrc
+EXIT 4: one prediction I got wrong today, and what I learned from it: I thought adding .py would change script execution, but I learned that Linux relies entirely on the shebang line inside the file instead of extensions
